@@ -14,8 +14,11 @@
 
 int main(int args, char *argv[])
 {
+    t_info      info;
+    t_philo     *philos;
+
     check_input(argv);
-    if (init_program() == -1)
+    if (init_program(&info, &philos, argv) == -1)
         return (clean_all(), 1);
     if (create_thread() == -1)
         return (clean_all(), 1);
