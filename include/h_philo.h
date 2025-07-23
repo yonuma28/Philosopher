@@ -7,6 +7,8 @@
  # include <stdlib.h>
  # include <pthread.h>
  # include <stdbool.h>
+ # include <errno.h>
+ # include <unistd.h>
 
 typedef pthread_mutex_t t_mtx;
 
@@ -35,5 +37,12 @@ typedef struct s_philo
     t_mtx               *right_fork;
     t_info              *info;
 }   t_philo;
+
+//monitor
+void    *monitor(void   *args);
+
+// prepare
+int init_program(t_info	*info, t_philo	*philos[], t_mtx	*forks[], 
+	char	*argv[]);
 
 #endif

@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   create_thread.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 13:20:46 by marvin            #+#    #+#             */
-/*   Updated: 2025/07/23 13:20:46 by marvin           ###   ########.fr       */
+/*   Updated: 2025/07/23 17:08:07 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include <h_philo.h>
+
+int	create_even_philos(t_info *info, t_philo	**philos);
 
 int	create_thread(t_info   *info, t_philo *philos)
 {
