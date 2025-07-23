@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/14 11:26:22 by marvin            #+#    #+#             */
-/*   Updated: 2025/07/14 11:26:22 by marvin           ###   ########.fr       */
+/*   Created: 2025/07/23 14:18:41 by marvin            #+#    #+#             */
+/*   Updated: 2025/07/23 14:18:41 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include <h_philo.h>
 
-int main(int args, char *argv[])
+void    *monitor(void   *args)
 {
-    t_info      info;
-    t_philo     *philos;
-    t_mtx       *forks;
+    t_philo *philos;
 
-    check_input(argv);
-    if (init_program(&info, &philos, &forks, argv) == 1)
-        return (clean_all(philos, forks), 1);
-    if (create_thread(info, philos) == 1)
-        return (clean_all(philos, forks), 1);
-    clean_all(philos, forks);
-    return (0);
+    philos = (t_philo *)args;
+    while (1)
+    {
+        if (check_dead(philos->info->is_dead) == 1 || check_all_ate(philos))
+            break;
+    }
 }
