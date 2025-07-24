@@ -17,6 +17,8 @@ CFLAGS = -g -Wall -Wextra -Werror -I./include #-fsanitize=thread
 FILES = monitor/monitor.c \
 		prepare/check.c \
 		prepare/init.c \
+		clean/clean.c \
+		action/move.c \
 		thread/create_thread.c \
 		main.c
 SRCS = $(addprefix ./src/, $(FILES))

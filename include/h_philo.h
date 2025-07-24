@@ -52,4 +52,10 @@ void	eat(t_philo *philo);
 
 //thread
 int	    create_thread(t_info   *info, t_philo *philos);
+
+//check
+int check_input(char    *argv[]);
+
+//clear
+int clean_all(t_info *info, t_philo *philos);
 #endif
