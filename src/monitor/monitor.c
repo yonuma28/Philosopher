@@ -12,6 +12,7 @@
 
 # include <h_philo.h>
 
+
 void    *monitor(void   *args)
 {
     t_philo *philos;
@@ -19,7 +20,8 @@ void    *monitor(void   *args)
     philos = (t_philo *)args;
     while (1)
     {
-        if (check_dead(philos->info->is_dead) == 1 || check_all_ate(philos))
+        if (philos->info->is_dead == true) //|| check_all_ate(philos)
             break;
     }
+    return (philos);
 }

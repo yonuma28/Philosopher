@@ -12,7 +12,8 @@
 
 # include <h_philo.h>
 
-int check_input()
+int check_input(char    *argv[])
 {
+    (void)argv;
     return (0);
 }

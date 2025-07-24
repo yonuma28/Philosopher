@@ -45,4 +45,11 @@ void    *monitor(void   *args);
 int init_program(t_info	*info, t_philo	*philos[], t_mtx	*forks[], 
 	char	*argv[]);
 
+//move
+void	think(t_philo *philo);
+void	sleeping(t_philo *philo);
+void	eat(t_philo *philo);
+
+//thread
+int	    create_thread(t_info   *info, t_philo *philos);
 #endif

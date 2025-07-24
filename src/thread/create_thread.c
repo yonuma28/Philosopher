@@ -12,7 +12,73 @@
 
 # include <h_philo.h>
 
-int	create_even_philos(t_info *info, t_philo	**philos);
+int	dead_loop(t_philo *philo)
+{
+	pthread_mutex_lock(philo->info->death_mtx);
+	if ((philo->info->is_dead) == 1)
+		return (pthread_mutex_unlock(philo->info->death_mtx), 1);
+	pthread_mutex_unlock(philo->info->death_mtx);
+	return (0);
+}
+
+void	*action_philo(void *_philo)
+{
+	t_philo	*philo;
+
+	philo = (t_philo *)_philo;
+	while (!dead_loop(philo))
+	{
+		eat(philo);
+		sleeping(philo);
+		think(philo);
+	}
+	return (NULL);
+}
+
+int	create_even_philos(t_info	*info, t_philo *philos)
+{
+	int	i;
+
+	i = 0;
+	while (i < info->num_of_philos)
+	{
+		if (pthread_create(&philos[i].thread, NULL, action_philo,
+				&philos[i]) != 0)
+		{
+			while (i >= 0)
+			{
+				i -= 2;
+				pthread_detach(philos[i].thread);
+			}
+			return (1);
+		}
+		i += 2;
+	}
+	return (0);
+}
+
+int	create_odd_philos(t_info	*info, t_philo *philos)
+{
+	int	i;
+
+	i = 1;
+	usleep(info->time_to_eat);
+	while (i < info->num_of_philos)
+	{
+		if (pthread_create(&philos[i].thread, NULL, action_philo,
+				&philos[i]) != 0)
+		{
+			while (i >= 1)
+			{
+				i -= 2;
+				pthread_detach(philos[i].thread);
+			}
+			return (1);
+		}
+		i += 2;
+	}
+	return (0);
+}
 
 int	create_thread(t_info   *info, t_philo *philos)
 {

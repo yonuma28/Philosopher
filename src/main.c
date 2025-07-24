@@ -18,6 +18,7 @@ int main(int args, char *argv[])
     t_philo     *philos;
     t_mtx       *forks;
 
+    (void)args;
     check_input(argv);
     if (init_program(&info, &philos, &forks, argv) == 1)
         return (clean_all(philos, forks), 1);

@@ -20,37 +20,39 @@ int malloc_philos(t_info    *info, t_philo   *philos[], t_mtx   *forks[])
     *forks = (t_mtx	*)malloc(sizeof(t_mtx) * info->num_of_philos);
 	if (!(*forks))
         return (write(STDERR_FILENO, "malloc error.\n", 14), 1);
+	return (0);
 }
 
-int	init_forks(t_info	*info, t_mtx	*forks[])
+int	init_forks(t_info	*info, t_mtx	**forks)
 {
 	int	i;
 
 	i = 0;
 	while (i < info->num_of_philos)
 	{
-		if (pthread_mutex_error(&forks[i], NULL) != 0)
+		if (pthread_mutex_init(forks[i], NULL) != 0)
 			return (write(STDERR_FILENO, "Mutex Error.\n", 13), 1);
 		i ++;
 	}
 	return (0);
 }
 
-void	set_philos(t_philo	**philo, t_info	*info, t_mtx	*forks[], char	*argv[])
+void	set_philos(t_philo	**philo, t_info	*info, t_mtx	**forks, char	*argv[])
 {
 	int	i;
 
 	i = 0;
+	(void)argv;
 	while (i < info->num_of_philos)
 	{
 		philo[i]->id = i + 1;
 		philo[i]->meal_count = 0;
 		philo[i]->status = 0;
-		philo[i]->right_fork = &forks[i];
+		philo[i]->right_fork = forks[i];
 		if (i == 0)
-			philo[i]->left_fork = &forks[philo[i]->info->num_of_philos - 1];
+			philo[i]->left_fork = forks[philo[i]->info->num_of_philos - 1];
 		else
-			philo[i]->left_fork = &forks[i - 1];
+			philo[i]->left_fork = forks[i - 1];
 		i++;
 	}
 }
@@ -58,13 +60,13 @@ void	set_philos(t_philo	**philo, t_info	*info, t_mtx	*forks[], char	*argv[])
 int init_program(t_info	*info, t_philo	*philos[], t_mtx	*forks[], 
 	char	*argv[])
 {
-    info->num_of_philos = ft_atol(argv[1]);
+    info->num_of_philos = atoi(argv[1]); //koko
     info->is_dead = false;
-    if (malloc_philos(&info, &philos, &forks))
+    if (malloc_philos(info, philos, forks))
 		return (1);
-	if (init_forks(&info, &forks))
+	if (init_forks(info, forks))
 		return (1);
-	set_philos(&philos, &info, &forks, argv);
+	set_philos(philos, info, forks, argv);
 	if (pthread_mutex_init(&info->write_mtx, NULL) != 0)
 		return (write(STDERR_FILENO, "Mutex Error\n", 12), 1);
 	if (pthread_mutex_init(&info->death_mtx, NULL) != 0)

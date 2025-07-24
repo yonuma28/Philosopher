@@ -12,7 +12,7 @@
 
 FILES = main.c
 PHILO = philo
-CC = cc
+CC = gcc
 CFLAGS = -g -Wall -Wextra -Werror -I./include #-fsanitize=thread
 FILES = monitor/monitor.c \
 		prepare/check.c \
