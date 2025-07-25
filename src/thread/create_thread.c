@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_thread.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 13:20:46 by marvin            #+#    #+#             */
-/*   Updated: 2025/07/23 17:08:07 by yonuma           ###   ########.fr       */
+/*   Updated: 2025/07/25 16:16:40 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	dead_loop(t_philo *philo)
 {
-	pthread_mutex_lock(philo->info->death_mtx);
+	pthread_mutex_lock(&philo->info->death_mtx);
 	if ((philo->info->is_dead) == 1)
-		return (pthread_mutex_unlock(philo->info->death_mtx), 1);
-	pthread_mutex_unlock(philo->info->death_mtx);
+		return (pthread_mutex_unlock(&philo->info->death_mtx), 1);
+	pthread_mutex_unlock(&philo->info->death_mtx);
 	return (0);
 }
 

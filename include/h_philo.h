@@ -9,6 +9,7 @@
  # include <stdbool.h>
  # include <errno.h>
  # include <unistd.h>
+ # include <sys/time.h>
 
 typedef pthread_mutex_t t_mtx;
 
@@ -58,4 +59,7 @@ int check_input(char    *argv[]);
 
 //clear
 int clean_all(t_info *info, t_philo *philos);
+
+//utils
+size_t	get_current_time(void);
 #endif
