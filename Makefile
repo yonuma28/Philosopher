@@ -10,35 +10,36 @@
 #                                                                              #
 # **************************************************************************** #
 
-FILES = main.c
-PHILO = philo
+# ここ修正してね
 CC = gcc
-CFLAGS = -g -Wall -Wextra -Werror -I./include #-fsanitize=thread
-FILES = monitor/monitor.c \
-		prepare/check.c \
-		prepare/init.c \
-		clean/clean.c \
-		action/move.c \
-		thread/create_thread.c \
-		utils/utils.c \
-		main.c
-SRCS = $(addprefix ./src/, $(FILES))
+CFLAGS = -g -Wall -Wextra -Werror -I./include
+
+SRCS = src/monitor/monitor.c \
+       src/prepare/check.c \
+       src/prepare/init.c \
+       src/clean/clean.c \
+       src/action/move.c \
+       src/thread/create_thread.c \
+       src/utils/utils.c \
+       src/main.c
+
 OBJS = $(SRCS:.c=.o)
+TARGET = philo
 
-all: $(PHILO)
+all: $(TARGET)
 
-$(PHILO): $(OBJS)
+$(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $^
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(SRCS:.c=.o)
+	$(RM) $(OBJS)
 
 fclean: clean
-	$(RM) $(PHILO)
+	$(RM) $(TARGET)
 
 re: fclean all
 
-.PHONY : all clean fclean re
+.PHONY: all clean fclean re

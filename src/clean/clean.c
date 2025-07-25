@@ -12,9 +12,9 @@
 
 # include <h_philo.h>
 
-int clean_all(t_info *info, t_philo *philos)
+void    clean_all(t_info *info, t_philo *philos, t_mtx  *forks)
 {
     (void)info;
     (void)philos;
-    return 0;
+    (void)forks;
 }

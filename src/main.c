@@ -21,9 +21,9 @@ int main(int args, char *argv[])
     (void)args;
     check_input(argv);
     if (init_program(&info, &philos, &forks, argv) == 1)
-        return (clean_all(philos, forks), 1);
+        return (clean_all(&info, philos, forks), 1);
     if (create_thread(&info, philos) == 1)
-        return (clean_all(philos, forks), 1);
-    clean_all(philos, forks);
+        return (clean_all(&info, philos, forks), 1);
+    clean_all(&info, philos, forks);
     return (0);
 }

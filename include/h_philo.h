@@ -58,7 +58,7 @@ int	    create_thread(t_info   *info, t_philo *philos);
 int check_input(char    *argv[]);
 
 //clear
-int clean_all(t_info *info, t_philo *philos);
+void clean_all(t_info *info, t_philo *philos, t_mtx  *forks);
 
 //utils
 size_t	get_current_time(void);
