@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
+#    By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/14 11:31:40 by marvin            #+#    #+#              #
-#    Updated: 2025/07/25 15:40:28 by marvin           ###   ########.fr        #
+#    Updated: 2025/07/26 18:49:17 by yonuma           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,8 @@ SRCS = src/monitor/monitor.c \
        src/action/move.c \
        src/thread/create_thread.c \
        src/utils/utils.c \
+       src/libft/ft_atoi.c \
+       src/libft/ft_isdigit.c \
        src/main.c
 
 OBJS = $(SRCS:.c=.o)

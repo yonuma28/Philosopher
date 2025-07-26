@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check.c                                            :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/14 11:49:43 by marvin            #+#    #+#             */
-/*   Updated: 2025/07/26 18:55:59 by yonuma           ###   ########.fr       */
+/*   Created: 2024/04/15 13:01:02 by marvin            #+#    #+#             */
+/*   Updated: 2025/07/26 18:53:41 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <h_philo.h>
-
-int check_input(char *argv[])
+int	ft_isdigit(int c)
 {
-    int i;
-
-    i = 0;
-    while (argv[i] != NULL)
-    {
-        if (ft_isdigit(ft_atoi(argv[i])))
-            return (1);
-        i ++;
-    }
-    return (0);
+	if ('0' <= c && c <= '9')
+		return (1);
+	return (0);
 }
+
+// int main(void)
+// {
+//     if (isdigit('a'))
+//         puts("a");
+//     if (isdigit('4'))
+//         puts("4");
+//     if (ft_isdigit('a'))
+//         puts("a");
+//     if (ft_isdigit('4'))
+//         puts("4");
+// }

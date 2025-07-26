@@ -55,11 +55,15 @@ void	eat(t_philo *philo);
 int	    create_thread(t_info   *info, t_philo *philos);
 
 //check
-int check_input(char    *argv[]);
+int check_input(char *argv[]);
 
 //clear
 void clean_all(t_info *info, t_philo *philos, t_mtx  *forks);
 
 //utils
 size_t	get_current_time(void);
+
+//libft
+int					ft_isdigit(int c);
+int	ft_atoi(const char *str);
 #endif

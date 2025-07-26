@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 11:00:35 by marvin            #+#    #+#             */
-/*   Updated: 2025/07/25 15:15:56 by marvin           ###   ########.fr       */
+/*   Updated: 2025/07/26 12:26:11 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	print_message(t_philo *philo, char *message)
 		pthread_mutex_unlock(&philo->info->death_mtx);
 		return ;
 	}
-	printf("%d %d %s\n", (get_current_time() - philo->info->start_time), philo->id,
+	printf("%ld %d %s\n", (get_current_time() - philo->info->start_time), philo->id,
 		message);
 	pthread_mutex_unlock(&philo->info->death_mtx);
 }
