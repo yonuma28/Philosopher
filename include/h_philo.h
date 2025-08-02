@@ -43,7 +43,7 @@ typedef struct s_philo
 void    *monitor(void   *args);
 
 // prepare
-int init_program(t_info	*info, t_philo	*philos[], t_mtx	*forks[], 
+int init_program(t_info	*info, t_philo	*philos[], t_mtx	**forks, 
 	char	*argv[]);
 
 //move
@@ -62,8 +62,9 @@ void clean_all(t_info *info, t_philo *philos, t_mtx  *forks);
 
 //utils
 size_t	get_current_time(void);
+int	    ft_usleep(size_t msec);
 
 //libft
 int					ft_isdigit(int c);
-int	ft_atoi(const char *str);
+int	                ft_atoi(const char *str);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_thread.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 13:20:46 by marvin            #+#    #+#             */
-/*   Updated: 2025/07/25 16:16:40 by marvin           ###   ########.fr       */
+/*   Updated: 2025/08/02 19:53:26 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	create_odd_philos(t_info	*info, t_philo *philos)
 	int	i;
 
 	i = 1;
-	usleep(info->time_to_eat);
+	ft_usleep((unsigned int)info->time_to_eat);
 	while (i < info->num_of_philos)
 	{
 		if (pthread_create(&philos[i].thread, NULL, action_philo,
