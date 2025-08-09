@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 11:48:49 by marvin            #+#    #+#             */
-/*   Updated: 2025/08/02 20:02:21 by yonuma           ###   ########.fr       */
+/*   Updated: 2025/08/09 21:15:31 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	input_data(t_philo *philo, char **argv)
 	philo->info->time_to_die = ft_atoi(argv[2]);
 	philo->info->time_to_eat = ft_atoi(argv[3]);
 	philo->info->time_to_sleep = ft_atoi(argv[4]);
+	philo->info->start_time = get_current_time();
 	if (argv[5])
 		philo->info->num_times_to_eat = ft_atoi(argv[5]);
 	else
@@ -62,6 +63,7 @@ void	set_philos(t_philo	*philo, t_info	*info, t_mtx	**forks, char	*argv[])
 		input_data(&philo[i], argv);
 		philo[i].meal_count = 0;
 		philo[i].status = 0;
+		philo[i].last_meal_time = get_current_time();
 		philo[i].right_fork = forks[i];
 		if (i == 0)
 			philo[i].left_fork = forks[info->num_of_philos - 1];
@@ -86,6 +88,7 @@ int init_program(t_info	*info, t_philo	*philos[], t_mtx	**forks,
 		return (1);
 	if (init_forks(info, *forks))
 		return (1);
+	info->forks = *forks;
 	set_philos(*philos, info, forks, argv);
     return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 11:26:22 by marvin            #+#    #+#             */
-/*   Updated: 2025/08/02 17:20:06 by yonuma           ###   ########.fr       */
+/*   Updated: 2025/08/09 21:16:08 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int main(int args, char *argv[])
     check_input(argv);
     if (init_program(&info, &philos, &forks, argv) == 1)
         return (clean_all(&info, philos, forks), 1);
-    if (create_thread(&info, philos) == 1)
+    if (create_thread(&info, philos) == 1) // ここでsegmentation fault
         return (clean_all(&info, philos, forks), 1);
     clean_all(&info, philos, forks);
     return (0);
