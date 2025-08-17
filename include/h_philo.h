@@ -45,6 +45,8 @@ void    *monitor(void   *args);
 // prepare
 int init_program(t_info	*info, t_philo	*philos[], t_mtx	**forks, 
 	char	*argv[]);
+void	input_data(t_info *info, char **argv);
+void	set_philos(t_philo	*philo, t_info	*info, t_mtx	*forks);
 
 //move
 void	think(t_philo *philo);
