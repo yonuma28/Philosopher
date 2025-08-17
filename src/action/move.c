@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 11:00:35 by marvin            #+#    #+#             */
-/*   Updated: 2025/07/26 12:26:11 by yonuma           ###   ########.fr       */
+/*   Updated: 2025/08/17 15:07:24 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ void	eat(t_philo *philo)
 	print_message(philo, "has taken a fork");
 	print_message(philo, "is eating");
 	pthread_mutex_lock(&philo->info->write_mtx);
-	philo->info->start_time = get_current_time();
+	philo->last_meal_time = get_current_time();
 	philo->meal_count++;
 	pthread_mutex_unlock(&philo->info->write_mtx);
-	usleep(philo->info->time_to_eat);
+	ft_usleep(philo->info->time_to_eat);
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
 }
@@ -49,7 +49,7 @@ void	eat(t_philo *philo)
 void	sleeping(t_philo *philo)
 {
 	print_message(philo, "is sleeping");
-	usleep(philo->info->time_to_sleep);
+	ft_usleep(philo->info->time_to_sleep);
 }
 
 void	think(t_philo *philo)
