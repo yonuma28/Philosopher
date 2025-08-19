@@ -20,7 +20,7 @@ void	print_message(t_philo *philo, char *message)
 		pthread_mutex_unlock(&philo->info->death_mtx);
 		return ;
 	}
-	printf("%ld %d %s\n", (get_current_time() - philo->info->start_time), philo->id,
+	printf("%d %d %s\n", (get_current_time() - philo->info->start_time), philo->id,
 		message);
 	pthread_mutex_unlock(&philo->info->death_mtx);
 }
