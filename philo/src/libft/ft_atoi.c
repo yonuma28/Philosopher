@@ -6,11 +6,11 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:00:21 by marvin            #+#    #+#             */
-/*   Updated: 2025/07/26 18:49:25 by yonuma           ###   ########.fr       */
+/*   Updated: 2025/08/22 16:37:24 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <limits.h>
+#include "../../include/h_philo.h"
 
 static long	convert_to_long(const char *str, int sign)
 {

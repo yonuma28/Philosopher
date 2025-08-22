@@ -6,13 +6,13 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 11:49:43 by marvin            #+#    #+#             */
-/*   Updated: 2025/08/02 15:17:57 by yonuma           ###   ########.fr       */
+/*   Updated: 2025/08/22 16:37:34 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <h_philo.h>
+#include "../../include/h_philo.h"
 
-int check_input(char *argv[])
+int	check_input(char *argv[])
 {
 	int	i;
 	int	j;

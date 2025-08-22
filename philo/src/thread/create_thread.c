@@ -6,11 +6,11 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 13:20:46 by marvin            #+#    #+#             */
-/*   Updated: 2025/08/02 19:53:26 by yonuma           ###   ########.fr       */
+/*   Updated: 2025/08/22 16:37:40 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <h_philo.h>
+#include "../../include/h_philo.h"
 
 int	dead_loop(t_philo *philo)
 {
@@ -35,7 +35,7 @@ void	*action_philo(void *_philo)
 	return (NULL);
 }
 
-int	create_even_philos(t_info	*info, t_philo *philos)
+int	create_even_philos(t_info *info, t_philo *philos)
 {
 	int	i;
 
@@ -57,7 +57,7 @@ int	create_even_philos(t_info	*info, t_philo *philos)
 	return (0);
 }
 
-int	create_odd_philos(t_info	*info, t_philo *philos)
+int	create_odd_philos(t_info *info, t_philo *philos)
 {
 	int	i;
 
@@ -80,7 +80,7 @@ int	create_odd_philos(t_info	*info, t_philo *philos)
 	return (0);
 }
 
-int	create_thread(t_info   *info, t_philo *philos)
+int	create_thread(t_info *info, t_philo *philos)
 {
 	int			i;
 	pthread_t	observer;

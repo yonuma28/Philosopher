@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/15 13:01:02 by marvin            #+#    #+#             */
-/*   Updated: 2025/07/26 18:53:41 by yonuma           ###   ########.fr       */
+/*   Created: 2025/07/24 13:53:43 by marvin            #+#    #+#             */
+/*   Updated: 2025/08/22 16:37:21 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigit(int c)
-{
-	if ('0' <= c && c <= '9')
-		return (1);
-	return (0);
-}
+#include "../../include/h_philo.h"
 
-// int main(void)
-// {
-//     if (isdigit('a'))
-//         puts("a");
-//     if (isdigit('4'))
-//         puts("4");
-//     if (ft_isdigit('a'))
-//         puts("a");
-//     if (ft_isdigit('4'))
-//         puts("4");
-// }
+void	clean_all(t_info *info, t_philo *philos, t_mtx *forks)
+{
+	int	i;
+
+	i = 0;
+	if (forks)
+	{
+		while (i < info->num_of_philos)
+		{
+			pthread_mutex_destroy(&forks[i]);
+			i++;
+		}
+		free(forks);
+	}
+	pthread_mutex_destroy(&info->death_mtx);
+	pthread_mutex_destroy(&info->write_mtx);
+	if (philos)
+		free(philos);
+}

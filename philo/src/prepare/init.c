@@ -3,27 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 11:48:49 by marvin            #+#    #+#             */
-/*   Updated: 2025/08/09 21:15:31 by marvin           ###   ########.fr       */
+/*   Updated: 2025/08/22 16:37:37 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <h_philo.h>
+#include "../../include/h_philo.h"
 
-int malloc_philos(t_info    *info, t_philo   *philos[], t_mtx   *forks[])
+int	malloc_philos(t_info *info, t_philo *philos[], t_mtx *forks[])
 {
-    *philos = (t_philo  *)malloc(sizeof(t_philo) * info->num_of_philos);
-    if (!(*philos))
-        return (write(STDERR_FILENO, "malloc error.\n", 14), 1);
-    *forks = (t_mtx	*)malloc(sizeof(t_mtx) * info->num_of_philos);
+	*philos = (t_philo *)malloc(sizeof(t_philo) * info->num_of_philos);
+	if (!(*philos))
+		return (write(STDERR_FILENO, "malloc error.\n", 14), 1);
+	*forks = (t_mtx *)malloc(sizeof(t_mtx) * info->num_of_philos);
 	if (!(*forks))
-        return (write(STDERR_FILENO, "malloc error.\n", 14), 1);
+		return (write(STDERR_FILENO, "malloc error.\n", 14), 1);
 	return (0);
 }
 
-int	init_forks(t_info	*info, t_mtx *forks)
+int	init_forks(t_info *info, t_mtx *forks)
 {
 	int	i;
 
@@ -49,7 +49,7 @@ void	input_data(t_info *info, char **argv)
 		info->num_times_to_eat = -1;
 }
 
-void	set_philos(t_philo	*philo, t_info	*info, t_mtx	*forks)
+void	set_philos(t_philo *philo, t_info *info, t_mtx *forks)
 {
 	int	i;
 
@@ -70,23 +70,22 @@ void	set_philos(t_philo	*philo, t_info	*info, t_mtx	*forks)
 	}
 }
 
-int init_program(t_info	*info, t_philo	*philos[], t_mtx	**forks,
-	char	*argv[])
+int	init_program(t_info *info, t_philo *philos[], t_mtx **forks, char *argv[])
 {
-    info->num_of_philos = ft_atoi(argv[1]);
-    info->is_dead = false;
+	info->num_of_philos = ft_atoi(argv[1]);
+	info->is_dead = false;
 	input_data(info, argv);
-    if (pthread_mutex_init(&info->death_mtx, NULL) != 0)
+	if (pthread_mutex_init(&info->death_mtx, NULL) != 0)
 	{
-        return (write(STDERR_FILENO, "Mutex Error (death_mtx init)\n", 29), 1);
+		return (write(STDERR_FILENO, "Mutex Error (death_mtx init)\n", 29), 1);
 	}
 	if (pthread_mutex_init(&info->write_mtx, NULL) != 0)
-	    return (write(STDERR_FILENO, "Mutex Error\n", 12), 1);
+		return (write(STDERR_FILENO, "Mutex Error\n", 12), 1);
 	if (malloc_philos(info, philos, forks))
 		return (1);
 	if (init_forks(info, *forks))
 		return (1);
 	info->forks = *forks;
 	set_philos(*philos, info, *forks);
-    return (0);
+	return (0);
 }

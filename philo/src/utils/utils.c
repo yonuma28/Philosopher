@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 15:34:43 by marvin            #+#    #+#             */
-/*   Updated: 2025/08/17 12:34:08 by marvin           ###   ########.fr       */
+/*   Updated: 2025/08/22 16:37:45 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <h_philo.h>
+#include "../../include/h_philo.h"
 
 size_t	get_current_time(void)
 {
