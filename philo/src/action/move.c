@@ -6,7 +6,7 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 11:00:35 by marvin            #+#    #+#             */
-/*   Updated: 2025/08/22 16:40:13 by yonuma           ###   ########.fr       */
+/*   Updated: 2025/08/22 17:38:32 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ void	eat(t_philo *philo)
 	}
 	eat_add_even(philo);
 	print_message(philo, "is eating");
-	pthread_mutex_lock(&philo->info->write_mtx);
+	pthread_mutex_lock(&philo->info->eat_mtx);
 	philo->last_meal_time = get_current_time();
 	philo->meal_count++;
-	pthread_mutex_unlock(&philo->info->write_mtx);
+	pthread_mutex_unlock(&philo->info->eat_mtx);
 	ft_usleep(philo->info->time_to_eat);
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);

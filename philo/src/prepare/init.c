@@ -6,7 +6,7 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 11:48:49 by marvin            #+#    #+#             */
-/*   Updated: 2025/08/22 16:37:37 by yonuma           ###   ########.fr       */
+/*   Updated: 2025/08/22 17:38:32 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	init_program(t_info *info, t_philo *philos[], t_mtx **forks, char *argv[])
 	{
 		return (write(STDERR_FILENO, "Mutex Error (death_mtx init)\n", 29), 1);
 	}
-	if (pthread_mutex_init(&info->write_mtx, NULL) != 0)
+	if (pthread_mutex_init(&info->eat_mtx, NULL) != 0)
 		return (write(STDERR_FILENO, "Mutex Error\n", 12), 1);
 	if (malloc_philos(info, philos, forks))
 		return (1);

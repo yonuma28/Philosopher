@@ -6,7 +6,7 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 16:38:53 by yonuma            #+#    #+#             */
-/*   Updated: 2025/08/22 16:38:57 by yonuma           ###   ########.fr       */
+/*   Updated: 2025/08/22 17:38:32 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_info
 	bool				is_dead;
 	size_t				start_time;
 	t_mtx				death_mtx;
-	t_mtx				write_mtx;
+	t_mtx				eat_mtx;
 	pthread_mutex_t		*forks;
 }						t_info;
 

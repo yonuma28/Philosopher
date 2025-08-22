@@ -6,7 +6,7 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 13:53:43 by marvin            #+#    #+#             */
-/*   Updated: 2025/08/22 16:37:21 by yonuma           ###   ########.fr       */
+/*   Updated: 2025/08/22 17:38:32 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	clean_all(t_info *info, t_philo *philos, t_mtx *forks)
 		free(forks);
 	}
 	pthread_mutex_destroy(&info->death_mtx);
-	pthread_mutex_destroy(&info->write_mtx);
+	pthread_mutex_destroy(&info->eat_mtx);
 	if (philos)
 		free(philos);
 }
