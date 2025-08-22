@@ -27,15 +27,26 @@ void	print_message(t_philo *philo, char *message)
 
 void	eat(t_philo *philo)
 {
-	pthread_mutex_lock(philo->left_fork);
-	print_message(philo, "has taken a fork");
 	if (philo->info->num_of_philos == 1)
 	{
+		print_message(philo, "has taken a fork");
 		usleep(philo->info->time_to_die);
 		return ;
 	}
-	pthread_mutex_lock(philo->right_fork);
-	print_message(philo, "has taken a fork");
+	if (philo->id % 2 == 0)
+	{
+		pthread_mutex_lock(philo->left_fork);
+		print_message(philo, "has taken a fork");
+		pthread_mutex_lock(philo->right_fork);
+		print_message(philo, "has taken a fork");
+	}
+	else
+	{
+		pthread_mutex_lock(philo->right_fork);
+		print_message(philo, "has taken a fork");
+		pthread_mutex_lock(philo->left_fork);
+		print_message(philo, "has taken a fork");
+	}
 	print_message(philo, "is eating");
 	pthread_mutex_lock(&philo->info->write_mtx);
 	philo->last_meal_time = get_current_time();

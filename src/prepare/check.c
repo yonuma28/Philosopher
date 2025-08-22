@@ -14,14 +14,20 @@
 
 int check_input(char *argv[])
 {
-    int i;
+	int	i;
+	int	j;
 
-    i = 0;
-    while (argv[i] != NULL)
-    {
-        if (ft_isdigit(ft_atoi(argv[i])))
-            return (1);
-        i ++;
-    }
-    return (0);
+	i = 1;
+	while (argv[i])
+	{
+		j = 0;
+		while (argv[i][j])
+		{
+			if (!ft_isdigit(argv[i][j]))
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
 }

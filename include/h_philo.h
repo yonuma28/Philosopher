@@ -10,6 +10,7 @@
  # include <errno.h>
  # include <unistd.h>
  # include <sys/time.h>
+ # include <string.h>
 
 typedef pthread_mutex_t t_mtx;
 
