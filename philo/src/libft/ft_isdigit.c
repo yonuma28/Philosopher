@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/15 13:01:02 by marvin            #+#    #+#             */
-/*   Updated: 2025/08/22 16:37:28 by yonuma           ###   ########.fr       */
+/*   Created: 2025/08/24 13:03:05 by marvin            #+#    #+#             */
+/*   Updated: 2025/08/24 13:12:36 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/h_philo.h"
+# include "../../include/h_philo.h"
 
 int	ft_isdigit(int c)
 {

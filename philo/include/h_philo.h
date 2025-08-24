@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   h_philo.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 16:38:53 by yonuma            #+#    #+#             */
-/*   Updated: 2025/08/22 17:38:32 by yonuma           ###   ########.fr       */
+/*   Updated: 2025/08/24 10:36:42 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void					eat(t_philo *philo);
 int						create_thread(t_info *info, t_philo *philos);
 
 //check
-int						check_input(char *argv[]);
+int						check_input(int args, char *argv[]);
 
 //clear
 void					clean_all(t_info *info, t_philo *philos, t_mtx *forks);

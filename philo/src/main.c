@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 11:26:22 by marvin            #+#    #+#             */
-/*   Updated: 2025/08/22 16:37:50 by yonuma           ###   ########.fr       */
+/*   Updated: 2025/08/24 10:42:56 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int	main(int args, char *argv[])
 	memset(&info, 0, sizeof(t_info));
 	if (!(args == 5 || args == 6))
 		return (write(STDERR_FILENO, "usage: 5 900 300 300 5\n", 23), 1);
-	if (check_input(argv) == 1)
-		return (1);
+	if (check_input(args, argv) == 1)
+		return (write(STDERR_FILENO, "please input number\n", 21), 1);
 	if (init_program(&info, &philos, &forks, argv) == 1)
 		return (clean_all(&info, philos, forks), 1);
 	if (create_thread(&info, philos) == 1)
