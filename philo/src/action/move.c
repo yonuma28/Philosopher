@@ -20,7 +20,7 @@ void	print_message(t_philo *philo, char *message)
 		pthread_mutex_unlock(&philo->info->death_mtx);
 		return ;
 	}
-	printf("%ld %d %s\n", (get_current_time() - philo->info->start_time),
+	printf("%d %d %s\n", (get_current_time() - philo->info->start_time),
 		philo->id, message);
 	pthread_mutex_unlock(&philo->info->death_mtx);
 }
@@ -48,7 +48,7 @@ void	eat(t_philo *philo)
 	if (philo->info->num_of_philos == 1)
 	{
 		print_message(philo, "has taken a fork");
-		usleep(philo->info->time_to_die);
+		ft_usleep(philo->info->time_to_die);
 		return ;
 	}
 	eat_add_even(philo);

@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-CC = cc
+CC = gcc
 CFLAGS = -g -Wall -Wextra -Werror # -fsanitize=thread
 
 SRCS = src/monitor/monitor.c \
