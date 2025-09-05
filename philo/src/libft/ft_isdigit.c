@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../include/h_philo.h"
+#include "../../include/h_philo.h"
 
 int	ft_isdigit(int c)
 {

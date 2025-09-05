@@ -21,12 +21,11 @@ int	check_input(int args, char *argv[])
 	while (i < args)
 	{
 		j = 0;
-		if (argv)
 		if (argv[i] == NULL || argv[i][0] == '\0')
 			return (1);
 		while (argv[i][j])
 		{
-				if(ft_isdigit(argv[i][j]) == 0)
+			if (ft_isdigit(argv[i][j]) == 0)
 				return (1);
 			j ++;
 		}
