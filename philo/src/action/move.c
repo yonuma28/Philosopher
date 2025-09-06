@@ -6,7 +6,7 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 11:00:35 by marvin            #+#    #+#             */
-/*   Updated: 2025/08/22 17:38:32 by yonuma           ###   ########.fr       */
+/*   Updated: 2025/09/06 18:38:06 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	print_message(t_philo *philo, char *message)
 
 void	eat_add_even(t_philo *philo)
 {
+	if (philo->id % 2 != 0)
+		ft_usleep(philo->info->time_to_eat / 2);
 	if (philo->id % 2 == 0)
 	{
 		pthread_mutex_lock(philo->left_fork);
