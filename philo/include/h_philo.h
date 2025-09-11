@@ -3,18 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   h_philo.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 16:38:53 by yonuma            #+#    #+#             */
-/*   Updated: 2025/08/24 10:36:42 by marvin           ###   ########.fr       */
+/*   Updated: 2025/09/11 12:16:59 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef H_PHILO_H
 # define H_PHILO_H
-# define THINK 0b00000001
-# define EAT 0b00000010
-# define SLEEP 0b00000100
 # include <errno.h>
 # include <limits.h>
 # include <pthread.h>

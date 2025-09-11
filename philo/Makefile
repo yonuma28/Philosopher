@@ -6,11 +6,11 @@
 #    By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/14 11:31:40 by marvin            #+#    #+#              #
-#    Updated: 2025/08/22 16:43:52 by yonuma           ###   ########.fr        #
+#    Updated: 2025/09/11 11:45:49 by yonuma           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = gcc
+CC = cc
 CFLAGS = -g -Wall -Wextra -Werror # -fsanitize=thread
 
 SRCS = src/monitor/monitor.c \

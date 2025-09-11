@@ -6,7 +6,7 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 15:34:43 by marvin            #+#    #+#             */
-/*   Updated: 2025/08/22 16:37:45 by yonuma           ###   ########.fr       */
+/*   Updated: 2025/09/11 12:39:46 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,17 @@ size_t	get_current_time(void)
 int	ft_usleep(size_t msec)
 {
 	size_t	start;
+	size_t	end_time;
+	size_t	remain_time;
 
 	start = get_current_time();
-	while ((get_current_time() - start) < msec)
-		usleep(500);
+	end_time = start + msec;
+	while (1)
+	{
+		remain_time = end_time - get_current_time();
+		if (remain_time <= 0)
+			break ;
+		usleep(remain_time);
+	}
 	return (0);
 }

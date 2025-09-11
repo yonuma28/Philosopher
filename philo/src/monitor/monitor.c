@@ -6,7 +6,7 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 14:18:41 by marvin            #+#    #+#             */
-/*   Updated: 2025/08/22 17:50:56 by yonuma           ###   ########.fr       */
+/*   Updated: 2025/09/11 12:39:08 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 static bool	is_dead(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->info->eat_mtx);
-	if ((get_current_time() - philo->last_meal_time) > philo->info->time_to_die)
+	if ((get_current_time() - philo->last_meal_time)
+		>= philo->info->time_to_die)
 	{
 		pthread_mutex_unlock(&philo->info->eat_mtx);
 		return (true);
