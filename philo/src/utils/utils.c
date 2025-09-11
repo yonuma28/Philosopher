@@ -6,7 +6,7 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 15:34:43 by marvin            #+#    #+#             */
-/*   Updated: 2025/09/11 13:09:22 by yonuma           ###   ########.fr       */
+/*   Updated: 2025/09/11 13:10:07 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_usleep(size_t msec, t_philo *philo)
 		if (philo->info->is_dead == true)
 		{
 			pthread_mutex_unlock(&philo->info->death_mtx);
-			break;
+			break ;
 		}
 		pthread_mutex_unlock(&philo->info->death_mtx);
 		remain_time = end_time - get_current_time();
