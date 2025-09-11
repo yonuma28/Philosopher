@@ -6,7 +6,7 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 16:38:53 by yonuma            #+#    #+#             */
-/*   Updated: 2025/09/11 12:16:59 by yonuma           ###   ########.fr       */
+/*   Updated: 2025/09/11 13:06:41 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void					clean_all(t_info *info, t_philo *philos, t_mtx *forks);
 
 //utils
 size_t					get_current_time(void);
-int						ft_usleep(size_t msec);
+int						ft_usleep(size_t msec, t_philo *philo);
 
 //libft
 int						ft_isdigit(int c);

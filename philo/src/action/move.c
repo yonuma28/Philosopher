@@ -6,7 +6,7 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 11:00:35 by marvin            #+#    #+#             */
-/*   Updated: 2025/09/11 12:38:54 by yonuma           ###   ########.fr       */
+/*   Updated: 2025/09/11 13:07:20 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	print_message(t_philo *philo, char *message)
 void	eat_add_even(t_philo *philo)
 {
 	ft_usleep((philo->id - 1)
-		* (philo->info->time_to_eat / philo->info->num_of_philos));
+		* (philo->info->time_to_eat / philo->info->num_of_philos), philo);
 	if (philo->id % 2 == 0)
 	{
 		pthread_mutex_lock(philo->left_fork);
@@ -50,7 +50,7 @@ void	eat(t_philo *philo)
 	if (philo->info->num_of_philos == 1)
 	{
 		print_message(philo, "has taken a fork");
-		ft_usleep(philo->info->time_to_die);
+		ft_usleep(philo->info->time_to_die, philo);
 		return ;
 	}
 	eat_add_even(philo);
@@ -59,7 +59,7 @@ void	eat(t_philo *philo)
 	philo->last_meal_time = get_current_time();
 	philo->meal_count++;
 	pthread_mutex_unlock(&philo->info->eat_mtx);
-	ft_usleep(philo->info->time_to_eat);
+	ft_usleep(philo->info->time_to_eat, philo);
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
 }
@@ -67,7 +67,7 @@ void	eat(t_philo *philo)
 void	sleeping(t_philo *philo)
 {
 	print_message(philo, "is sleeping");
-	ft_usleep(philo->info->time_to_sleep);
+	ft_usleep(philo->info->time_to_sleep, philo);
 }
 
 void	think(t_philo *philo)

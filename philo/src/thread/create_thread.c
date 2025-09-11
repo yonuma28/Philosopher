@@ -6,7 +6,7 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 13:20:46 by marvin            #+#    #+#             */
-/*   Updated: 2025/08/22 16:37:40 by yonuma           ###   ########.fr       */
+/*   Updated: 2025/09/11 13:07:27 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	create_odd_philos(t_info *info, t_philo *philos)
 	int	i;
 
 	i = 1;
-	ft_usleep((unsigned int)info->time_to_eat);
+	ft_usleep((unsigned int)info->time_to_eat, philos);
 	while (i < info->num_of_philos)
 	{
 		if (pthread_create(&philos[i].thread, NULL, action_philo,
