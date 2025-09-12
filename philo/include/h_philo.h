@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   h_philo.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 16:38:53 by yonuma            #+#    #+#             */
-/*   Updated: 2025/09/11 18:54:23 by yonuma           ###   ########.fr       */
+/*   Updated: 2025/09/12 20:22:59 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_info
 	size_t				start_time;
 	t_mtx				death_mtx;
 	t_mtx				eat_mtx;
+	t_mtx				write_mtx;
 	pthread_mutex_t		*forks;
 }						t_info;
 
@@ -66,6 +67,7 @@ void					eat(t_philo *philo);
 
 //thread
 int						create_thread(t_info *info, t_philo *philos);
+int						dead_loop(t_philo *philo);
 
 //check
 int						check_input(int args, char *argv[]);
@@ -75,7 +77,8 @@ void					clean_all(t_info *info, t_philo *philos, t_mtx *forks);
 
 //utils
 size_t					get_current_time(void);
-int						ft_usleep(size_t msec, t_philo *philo);
+void 					ft_usleep(size_t milliseconds, t_philo *philo);
+void					print_message(t_philo *philo, char *message);
 
 //libft
 int						ft_isdigit(int c);

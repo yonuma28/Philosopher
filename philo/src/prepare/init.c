@@ -60,7 +60,7 @@ void	set_philos(t_philo *philo, t_info *info, t_mtx *forks)
 		philo[i].info = info;
 		philo[i].meal_count = 0;
 		philo[i].status = 0;
-		philo[i].last_meal_time = get_current_time();
+		philo[i].last_meal_time = info->start_time;
 		philo[i].right_fork = &forks[i];
 		if (i + 1 == info->num_of_philos)
 			philo[i].left_fork = &forks[0];
@@ -80,6 +80,8 @@ int	init_program(t_info *info, t_philo *philos[], t_mtx **forks, char *argv[])
 		return (write(STDERR_FILENO, "Mutex Error (death_mtx init)\n", 29), 1);
 	}
 	if (pthread_mutex_init(&info->eat_mtx, NULL) != 0)
+		return (write(STDERR_FILENO, "Mutex Error\n", 12), 1);
+	if (pthread_mutex_init(&info->write_mtx, NULL) != 0)
 		return (write(STDERR_FILENO, "Mutex Error\n", 12), 1);
 	if (malloc_philos(info, philos, forks))
 		return (1);

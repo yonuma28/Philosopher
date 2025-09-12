@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 13:53:43 by marvin            #+#    #+#             */
-/*   Updated: 2025/08/22 17:38:32 by yonuma           ###   ########.fr       */
+/*   Updated: 2025/09/12 14:48:58 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	clean_all(t_info *info, t_philo *philos, t_mtx *forks)
 	}
 	pthread_mutex_destroy(&info->death_mtx);
 	pthread_mutex_destroy(&info->eat_mtx);
+	pthread_mutex_destroy(&info->write_mtx);
 	if (philos)
 		free(philos);
 }

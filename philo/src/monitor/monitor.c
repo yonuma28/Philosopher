@@ -6,35 +6,37 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 14:18:41 by marvin            #+#    #+#             */
-/*   Updated: 2025/09/11 12:39:08 by yonuma           ###   ########.fr       */
+/*   Updated: 2025/09/12 14:50:01 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/h_philo.h"
 
-static bool	is_dead(t_philo *philo)
+static int	check_and_set_death(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->info->eat_mtx);
-	if ((get_current_time() - philo->last_meal_time)
-		>= philo->info->time_to_die)
+	if ((get_current_time() - philo->last_meal_time) >= philo->info->time_to_die)
 	{
 		pthread_mutex_unlock(&philo->info->eat_mtx);
-		return (true);
+		pthread_mutex_lock(&philo->info->death_mtx);
+		if (philo->info->is_dead)
+		{
+			pthread_mutex_unlock(&philo->info->death_mtx);
+			return (1);
+		}
+		philo->info->is_dead = true;
+		pthread_mutex_unlock(&philo->info->death_mtx);
+		pthread_mutex_lock(&philo->info->write_mtx);
+		printf("%ld %d died\n", get_current_time() - philo->info->start_time,
+			philo->id);
+		pthread_mutex_unlock(&philo->info->write_mtx);
+		return (1);
 	}
 	pthread_mutex_unlock(&philo->info->eat_mtx);
-	return (false);
+	return (0);
 }
 
-static void	set_philo_dead(t_philo *philo)
-{
-	pthread_mutex_lock(&philo->info->death_mtx);
-	philo->info->is_dead = true;
-	printf("%ld %d died\n", get_current_time() - philo->info->start_time,
-		philo->id);
-	pthread_mutex_unlock(&philo->info->death_mtx);
-}
-
-static bool	check_all_ate(t_philo *philos)
+static int	check_all_ate(t_philo *philos)
 {
 	int	i;
 	int	satisfied_philos;
@@ -42,7 +44,8 @@ static bool	check_all_ate(t_philo *philos)
 	i = 0;
 	satisfied_philos = 0;
 	if (philos->info->num_times_to_eat == -1)
-		return (false);
+		return (0);
+
 	while (i < philos->info->num_of_philos)
 	{
 		pthread_mutex_lock(&philos[i].info->eat_mtx);
@@ -54,11 +57,12 @@ static bool	check_all_ate(t_philo *philos)
 	if (satisfied_philos == philos->info->num_of_philos)
 	{
 		pthread_mutex_lock(&philos->info->death_mtx);
-		philos->info->is_dead = true;
+		if (!philos->info->is_dead)
+			philos->info->is_dead = true;
 		pthread_mutex_unlock(&philos->info->death_mtx);
-		return (true);
+		return (1);
 	}
-	return (false);
+	return (0);
 }
 
 void	*monitor(void *args)
@@ -72,17 +76,13 @@ void	*monitor(void *args)
 		i = 0;
 		while (i < philos->info->num_of_philos)
 		{
-			if (is_dead(&philos[i]))
-			{
-				set_philo_dead(&philos[i]);
+			if (check_and_set_death(&philos[i]))
 				return (NULL);
-			}
 			i++;
 		}
 		if (check_all_ate(philos))
-			break ;
-		if (philos->info->is_dead == true)
-			break ;
+			return (NULL);
+		usleep(500);
 	}
-	return (philos);
+	return (NULL);
 }

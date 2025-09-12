@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 11:00:35 by marvin            #+#    #+#             */
-/*   Updated: 2025/09/11 19:08:53 by yonuma           ###   ########.fr       */
+/*   Updated: 2025/09/12 23:38:21 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,24 @@
 
 void	print_message(t_philo *philo, char *message)
 {
-	pthread_mutex_lock(&philo->info->death_mtx);
-	if (philo->info->is_dead)
+	if (dead_loop(philo))
+		return ;
+	pthread_mutex_lock(&philo->info->write_mtx);
+	if (dead_loop(philo))
 	{
-		pthread_mutex_unlock(&philo->info->death_mtx);
+		pthread_mutex_unlock(&philo->info->write_mtx);
 		return ;
 	}
 	printf("%ld %d %s\n", (get_current_time() - philo->info->start_time),
 		philo->id, message);
-	pthread_mutex_unlock(&philo->info->death_mtx);
+	pthread_mutex_unlock(&philo->info->write_mtx);
 }
 
 void	take_forks(t_philo *philo)
 {
-	// if (philo->id % 2 == 0)
-	// 	ft_usleep((philo->id - 1) * 10, philo);
 	if (philo->id % 2 == 0)
 	{
+		ft_usleep(1, philo);
 		pthread_mutex_lock(philo->left_fork);
 		print_message(philo, "has taken a fork");
 		pthread_mutex_lock(philo->right_fork);
@@ -38,25 +39,12 @@ void	take_forks(t_philo *philo)
 	}
 	else
 	{
+		ft_usleep((philo->id - 1) * 10, philo);
 		pthread_mutex_lock(philo->right_fork);
 		print_message(philo, "has taken a fork");
 		pthread_mutex_lock(philo->left_fork);
 		print_message(philo, "has taken a fork");
 	}
-}
-
-void	release_forks(t_philo *philo)
-{
-	// if (philo->id % 2 == 0)
-	// {
-		pthread_mutex_unlock(philo->left_fork);
-		pthread_mutex_unlock(philo->right_fork);
-	// }
-	// else
-	// {
-	// 	pthread_mutex_unlock(philo->right_fork);
-	// 	pthread_mutex_unlock(philo->left_fork);
-	// }
 }
 
 void	eat(t_philo *philo)
@@ -68,13 +56,20 @@ void	eat(t_philo *philo)
 		return ;
 	}
 	take_forks(philo);
+	if (dead_loop(philo))
+	{
+		pthread_mutex_unlock(philo->left_fork);
+		pthread_mutex_unlock(philo->right_fork);
+		return ;
+	}
 	print_message(philo, "is eating");
 	pthread_mutex_lock(&philo->info->eat_mtx);
 	philo->last_meal_time = get_current_time();
 	philo->meal_count++;
 	pthread_mutex_unlock(&philo->info->eat_mtx);
 	ft_usleep(philo->info->time_to_eat, philo);
-	release_forks(philo);
+	pthread_mutex_unlock(philo->left_fork);
+	pthread_mutex_unlock(philo->right_fork);
 }
 
 void	sleeping(t_philo *philo)

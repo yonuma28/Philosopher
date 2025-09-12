@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -g -Wall -Wextra -Werror # -fsanitize=thread
+CFLAGS = -g -pthread -Wall -Wextra -Werror
 
 SRCS = src/monitor/monitor.c \
        src/prepare/check.c \

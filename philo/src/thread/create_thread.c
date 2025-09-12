@@ -26,11 +26,17 @@ void	*action_philo(void *_philo)
 	t_philo	*philo;
 
 	philo = (t_philo *)_philo;
-	while (!dead_loop(philo))
+	while (1)
 	{
 		eat(philo);
+		if (dead_loop(philo))
+			break ;
 		sleeping(philo);
+		if (dead_loop(philo))
+			break ;
 		think(philo);
+		if (dead_loop(philo))
+			break ;
 	}
 	return (NULL);
 }
