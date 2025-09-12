@@ -91,7 +91,6 @@ int	create_thread(t_info *info, t_philo *philos)
 	int			i;
 	pthread_t	observer;
 
-	i = 0;
 	if (pthread_create(&observer, NULL, monitor, philos) != 0)
 		return (write(STDERR_FILENO, "Pthread_create Error\n", 21), 1);
 	if (create_even_philos(info, philos))

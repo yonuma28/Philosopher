@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 14:18:41 by marvin            #+#    #+#             */
-/*   Updated: 2025/09/12 14:50:01 by yonuma           ###   ########.fr       */
+/*   Updated: 2025/09/13 00:31:33 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 static int	check_and_set_death(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->info->eat_mtx);
-	if ((get_current_time() - philo->last_meal_time) >= philo->info->time_to_die)
+	if ((get_current_time() - philo->last_meal_time)
+		>= philo->info->time_to_die)
 	{
 		pthread_mutex_unlock(&philo->info->eat_mtx);
 		pthread_mutex_lock(&philo->info->death_mtx);
