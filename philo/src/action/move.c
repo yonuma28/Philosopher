@@ -20,7 +20,7 @@ void	print_message(t_philo *philo, char *message)
 		pthread_mutex_unlock(&philo->info->death_mtx);
 		return ;
 	}
-	printf("%d %d %s\n", (get_current_time() - philo->info->start_time),
+	printf("%ld %d %s\n", (get_current_time() - philo->info->start_time),
 		philo->id, message);
 	pthread_mutex_unlock(&philo->info->death_mtx);
 }
@@ -47,16 +47,16 @@ void	take_forks(t_philo *philo)
 
 void	release_forks(t_philo *philo)
 {
-	if (philo->id % 2 == 0)
-	{
+	// if (philo->id % 2 == 0)
+	// {
 		pthread_mutex_unlock(philo->left_fork);
 		pthread_mutex_unlock(philo->right_fork);
-	}
-	else
-	{
-		pthread_mutex_unlock(philo->right_fork);
-		pthread_mutex_unlock(philo->left_fork);
-	}
+	// }
+	// else
+	// {
+	// 	pthread_mutex_unlock(philo->right_fork);
+	// 	pthread_mutex_unlock(philo->left_fork);
+	// }
 }
 
 void	eat(t_philo *philo)

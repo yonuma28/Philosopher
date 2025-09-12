@@ -29,7 +29,7 @@ static void	set_philo_dead(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->info->death_mtx);
 	philo->info->is_dead = true;
-	printf("%d %d died\n", get_current_time() - philo->info->start_time,
+	printf("%ld %d died\n", get_current_time() - philo->info->start_time,
 		philo->id);
 	pthread_mutex_unlock(&philo->info->death_mtx);
 }

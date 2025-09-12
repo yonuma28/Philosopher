@@ -62,7 +62,7 @@ void	set_philos(t_philo *philo, t_info *info, t_mtx *forks)
 		philo[i].status = 0;
 		philo[i].last_meal_time = get_current_time();
 		philo[i].right_fork = &forks[i];
-		if (i == info->num_of_philos)
+		if (i + 1 == info->num_of_philos)
 			philo[i].left_fork = &forks[0];
 		else
 			philo[i].left_fork = &forks[i + 1];
