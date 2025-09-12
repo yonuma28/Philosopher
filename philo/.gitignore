@@ -1,5 +1,5 @@
 *.json
-.vscode/
+.vscode/*
 *.o
 *.exe
 

@@ -20,14 +20,15 @@ void	print_message(t_philo *philo, char *message)
 		pthread_mutex_unlock(&philo->info->death_mtx);
 		return ;
 	}
-	printf("%ld %d %s\n", (get_current_time() - philo->info->start_time),
+	printf("%d %d %s\n", (get_current_time() - philo->info->start_time),
 		philo->id, message);
 	pthread_mutex_unlock(&philo->info->death_mtx);
 }
 
-void	eat_add_even(t_philo *philo)
+void	take_forks(t_philo *philo)
 {
-	ft_usleep((philo->id - 1) * 10, philo);
+	// if (philo->id % 2 == 0)
+	// 	ft_usleep((philo->id - 1) * 10, philo);
 	if (philo->id % 2 == 0)
 	{
 		pthread_mutex_lock(philo->left_fork);
@@ -44,6 +45,20 @@ void	eat_add_even(t_philo *philo)
 	}
 }
 
+void	release_forks(t_philo *philo)
+{
+	if (philo->id % 2 == 0)
+	{
+		pthread_mutex_unlock(philo->left_fork);
+		pthread_mutex_unlock(philo->right_fork);
+	}
+	else
+	{
+		pthread_mutex_unlock(philo->right_fork);
+		pthread_mutex_unlock(philo->left_fork);
+	}
+}
+
 void	eat(t_philo *philo)
 {
 	if (philo->info->num_of_philos == 1)
@@ -52,15 +67,14 @@ void	eat(t_philo *philo)
 		ft_usleep(philo->info->time_to_die, philo);
 		return ;
 	}
-	eat_add_even(philo);
+	take_forks(philo);
 	print_message(philo, "is eating");
 	pthread_mutex_lock(&philo->info->eat_mtx);
 	philo->last_meal_time = get_current_time();
 	philo->meal_count++;
 	pthread_mutex_unlock(&philo->info->eat_mtx);
 	ft_usleep(philo->info->time_to_eat, philo);
-	pthread_mutex_unlock(philo->left_fork);
-	pthread_mutex_unlock(philo->right_fork);
+	release_forks(philo);
 }
 
 void	sleeping(t_philo *philo)
