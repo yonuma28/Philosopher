@@ -6,7 +6,7 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 13:20:46 by marvin            #+#    #+#             */
-/*   Updated: 2025/09/11 13:07:27 by yonuma           ###   ########.fr       */
+/*   Updated: 2025/09/14 17:19:31 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,13 @@ void	*action_philo(void *_philo)
 	t_philo	*philo;
 
 	philo = (t_philo *)_philo;
+	if (philo->info->num_of_philos % 2 == 1 && philo->id % 2 == 1
+		&& philo->info->num_of_philos != 1)
+	{
+		ft_usleep((philo->id - 1) / 2
+			* (philo->info->time_to_eat
+				/ (philo->info->num_of_philos / 2)), philo);
+	}
 	while (1)
 	{
 		eat(philo);
