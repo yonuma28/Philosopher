@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 14:18:41 by marvin            #+#    #+#             */
-/*   Updated: 2025/09/13 00:31:33 by marvin           ###   ########.fr       */
+/*   Updated: 2025/09/14 14:28:14 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ static int	check_all_ate(t_philo *philos)
 	satisfied_philos = 0;
 	if (philos->info->num_times_to_eat == -1)
 		return (0);
-
 	while (i < philos->info->num_of_philos)
 	{
 		pthread_mutex_lock(&philos[i].info->eat_mtx);

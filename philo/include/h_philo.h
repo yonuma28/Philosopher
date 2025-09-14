@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   h_philo.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 16:38:53 by yonuma            #+#    #+#             */
-/*   Updated: 2025/09/12 20:22:59 by marvin           ###   ########.fr       */
+/*   Updated: 2025/09/14 14:28:44 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void					clean_all(t_info *info, t_philo *philos, t_mtx *forks);
 
 //utils
 size_t					get_current_time(void);
-void 					ft_usleep(size_t milliseconds, t_philo *philo);
+void					ft_usleep(size_t milliseconds, t_philo *philo);
 void					print_message(t_philo *philo, char *message);
 
 //libft
