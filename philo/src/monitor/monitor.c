@@ -6,7 +6,7 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 14:18:41 by marvin            #+#    #+#             */
-/*   Updated: 2025/09/14 14:28:14 by yonuma           ###   ########.fr       */
+/*   Updated: 2025/09/14 18:04:51 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,6 @@ static int	check_and_set_death(t_philo *philo)
 	{
 		pthread_mutex_unlock(&philo->info->eat_mtx);
 		pthread_mutex_lock(&philo->info->death_mtx);
-		if (philo->info->is_dead)
-		{
-			pthread_mutex_unlock(&philo->info->death_mtx);
-			return (1);
-		}
 		philo->info->is_dead = true;
 		pthread_mutex_unlock(&philo->info->death_mtx);
 		pthread_mutex_lock(&philo->info->write_mtx);

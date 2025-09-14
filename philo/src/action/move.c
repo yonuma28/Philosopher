@@ -6,7 +6,7 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 11:00:35 by marvin            #+#    #+#             */
-/*   Updated: 2025/09/14 17:29:00 by yonuma           ###   ########.fr       */
+/*   Updated: 2025/09/14 21:41:36 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,6 @@ void	print_message(t_philo *philo, char *message)
 
 void	take_forks(t_philo *philo)
 {
-	if (philo->info->num_of_philos == 3)
-	{
-		ft_usleep((double)(get_current_time() - philo->last_meal_time)
-			/ (philo->info->time_to_eat + philo->info->time_to_sleep)
-			* 10, philo);
-	}
 	if (philo->id % 2 == 0)
 	{
 		pthread_mutex_lock(philo->left_fork);
@@ -57,6 +51,9 @@ void	eat(t_philo *philo)
 	{
 		print_message(philo, "has taken a fork");
 		ft_usleep(philo->info->time_to_die, philo);
+		pthread_mutex_lock(&philo->info->death_mtx);
+		philo->info->is_dead = 1;
+		pthread_mutex_unlock(&philo->info->death_mtx);
 		return ;
 	}
 	take_forks(philo);
