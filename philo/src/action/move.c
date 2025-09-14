@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 11:00:35 by marvin            #+#    #+#             */
-/*   Updated: 2025/09/12 23:38:21 by marvin           ###   ########.fr       */
+/*   Updated: 2025/09/14 12:01:10 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	take_forks(t_philo *philo)
 {
 	if (philo->id % 2 == 0)
 	{
-		ft_usleep(1, philo);
+		// ft_usleep(10, philo);
 		pthread_mutex_lock(philo->left_fork);
 		print_message(philo, "has taken a fork");
 		pthread_mutex_lock(philo->right_fork);
@@ -39,7 +39,11 @@ void	take_forks(t_philo *philo)
 	}
 	else
 	{
-		ft_usleep((philo->id - 1) * 10, philo);
+		if (philo->info->num_of_philos % 2 != 0)
+		{
+			ft_usleep((philo->id - 1) *
+				(philo->info->time_to_eat / philo->info->num_of_philos), philo);
+		}
 		pthread_mutex_lock(philo->right_fork);
 		print_message(philo, "has taken a fork");
 		pthread_mutex_lock(philo->left_fork);
