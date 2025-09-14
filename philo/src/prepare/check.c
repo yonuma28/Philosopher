@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 11:49:43 by marvin            #+#    #+#             */
-/*   Updated: 2025/08/24 13:14:06 by marvin           ###   ########.fr       */
+/*   Updated: 2025/09/14 12:14:55 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	check_input(int args, char *argv[])
 	while (i < args)
 	{
 		j = 0;
-		if (argv[i] == NULL || argv[i][0] == '\0')
+		if (argv[i] == NULL || argv[i][0] == '\0' || argv[i][0] == '0')
 			return (1);
 		while (argv[i][j])
 		{
